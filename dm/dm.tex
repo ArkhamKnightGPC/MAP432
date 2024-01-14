@@ -17,7 +17,7 @@
 \begin{document}
 	\title{DM: Chaînes de Markov (Comportement asymptotique)}
 	\author{Gabriel PEREIRA DE CARVALHO}
-	\date{Dernière modification \today}
+	\date{\today}
 	
 	\maketitle
 	
@@ -292,9 +292,26 @@
 		&= \sum_{x \in E} (\mu(x) - \nu(x)) ( \mathbb{P}_x(X_n = y, \tau \leq n) + \mathbb{P}_x(X_n = y, \tau > n) )
 	\end{align}
 	
-	Mais par la question précedente, on sait que $\mathbb{P}_x(X_n = y, \tau \leq n)$ ne dépend pas de $x$ et comme $\sum_{x \in E} \mu(x) = \sum_{x \in E} \nu(x) = 1$, les termes avec $\tau \leq n$ s'annulent. D'où
+	Mais par la question précedente, on sait que $\mathbb{P}_x(X_n = y, \tau \leq n)$ ne dépend pas de $x$ et comme $\sum_{x \in E} \mu(x) = \sum_{x \in E} \nu(x) = 1$, les termes avec $\tau \leq n$ s'annulent. On en conclue,
 	
 	$$ \mu P^n(y) - \nu P^n(y) = \sum_{x \in E} (\mu(x) - \nu(x)) \mathbb{P}_x(X_n = y, \tau > n). $$
+	
+	Alors, on remarque que $\tau > n  \iff B_1=...=B_n=0$. D'où, 
+	
+	$$\mathbb{P}(\tau > n) = (1-\alpha)^n.$$
+	
+	Donc, on a
+	
+	\begin{align}
+		\| \mu P^n - \nu P^n \|_{VT} &= \frac{1}{2} \sum_{y \in E} |\mu P^n(y) - \nu P^n(y)| \\
+		&= \frac{1}{2} \sum_{y \in E} \left| \sum_{x \in E} (\mu(x) - \nu(x)) \mathbb{P}_x(X_n = y, \tau > n)\right| \\
+		&\leq \frac{1}{2} \sum_{y \in E} \left(\sum_{x \in E} |\mu(x) - \nu(x)| \mathbb{P}_x(X_n = y, \tau > n)\right) \\
+		&\leq \frac{1}{2} \sum_{y \in E} \left(\sum_{x \in E} \mathbb{P}_x(X_n = y, \tau > n)\right) \\
+		&\leq \frac{1}{2} \sum_{x \in E} \left(\sum_{y \in E} \mathbb{P}_x(X_n = y, \tau > n)\right) \\
+		&= \frac{1}{2} \sum_{x \in E} \mathbb{P}_x(\tau > n)\\
+		&= \frac{1}{2} \mathbb{P}(\tau > n) \\
+		&= \frac{1}{2}(1-\alpha)^n \leq (1-\alpha)^n
+	\end{align}
 	
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{4.} Montrer que $y \mapsto P^n(x,y)$ converge vers une mesure $\pi$ et que $\pi$ ne dépend pas de x.
@@ -302,12 +319,54 @@
 		Montrer que $\pi$ est une mesure de probabilité invariante pour le processus $\{X_n\}_{n \geq 0}$.
 	\end{tcolorbox}
 
-
+	Montrons d'abord qu'il existe une mesure de probabilité invariante $\pi$.
+	
+	Posons $X_0 = x \in E$, on veut calculer $\mathbb{E}_x(T_x^+)$.
+	
+	Premièrement, on remarque que $\forall x,y \in E$ on a $P(x,y) \leq 1 - P(x,x) \leq 1 - \alpha m(x)$. Alors, soit $k \in \mathbb{N}$, on a
+	
+	\begin{align}
+		\mathbb{P}_x(T_x^+ > k) &= \sum_{y \not= x} P(x, y)\mathbb{P}_y(T_x^+ > k-1)\\
+		&\leq (1 - \alpha m(x)) \mathbb{P}_x(T_x^+ > k - 1)
+	\end{align}
+	
+	Par récurrence, on conclue $\mathbb{P}_x(T_x^+ > k) \leq (1 - \alpha m(x))^k$. Alors, on a
+	
+	\begin{align}
+		\mathbb{E}_x(T_x^+) = \sum_{k \geq 0} \mathbb{P}_x(T_x^+ > k) \leq \sum_{k \geq 0} (1 - \alpha m(x))^k < +\infty.
+	\end{align}
+	
+	Donc, par le \textbf{Théorème 4.6} du cours, on conclue qu'il existe une mesure invariante $\pi$ donnée par
+	
+	$$ \pi(x) = \frac{1}{\mathbb{E}_x(T_x^+)} $$
+	
+	Finalement, montrons que $y \mapsto P^n(x,y)$ converge vers $\pi$.
+	
+	Par l'exercice 3, on a
+	
+	$$ \| P^n(x, \cdot) - \pi P^n \|_{VT} = \| P^n(x, \cdot) - \pi \|_{VT} \leq (1 - \alpha)^n \xrightarrow[n \to +\infty]{} 0.$$
+	
+	On en conclue que $y \mapsto P^n(x,y)$ converge vers $\pi$.
 
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
-		\textbf{5.} 
+		\textbf{5.} Montrer maintenant que l’on peut toujours se ramener au cas $n_0 = 1$ dans $1$.
 	\end{tcolorbox}
+
+	Supposons $n_0 > 1$. Soit $(X_n)_{n \geq 0}$ une chaîne de Markov avec matrice de transition $P$ et $X_0 = x \in E$.
 	
+	Par division euclidienne,
 	
+	$$\forall n \in \mathbb{N}, \quad \exists k,\ell \in \mathbb{N} \quad \text{tels que } n = kn_0 + \ell \quad \text{avec $0 \leq \ell < n_0$}.$$
+	
+	Soit $(\tilde{X}_n)_{n \geq 0}$ une chaîne de Markov avec matrice de transition $P^{n_0}$ avec $\tilde{X}_0$ distribuée sous $P^{\ell}(x, \cdot)$.
+	
+	On remarque que la chaîne $(\tilde{X}_n)_{n \geq 0}$ vérifie le \textbf{critère de Doeblin} avec $n_0 = 1$. On a
+	
+	\begin{align}
+	 \mathbb{P}_x(X_n = y) &= \sum_{z \in E} P^\ell(x,z) \mathbb{P}_z(X_{n-l} = y) \\
+	 &= \sum_{z \in E} P^\ell(x,z) \mathbb{P}_z(\tilde{X}_{k} = y)
+	 \end{align}
+	 
+	 donc si $y \mapsto P^{kn_0}(z,y)$ converge vers une mesure invariante, alors $y \mapsto P^{n}(x,y)$ converge aussi.
 	
 \end{document}

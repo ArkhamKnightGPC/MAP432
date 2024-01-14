@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2023.6.5)  14 JAN 2024 21:01
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2023.6.5)  14 JAN 2024 23:14
  restricted system commands enabled.
 **dm.tex
 (./dm.tex
@@ -914,15 +914,17 @@ Overfull \hbox (20.35143pt too wide) detected at line 255
 []
  []
 
-[5] [6] [7] (./dm.aux))
+[5] [6] [7] [8
+Missing character: There is no ’ (U+2019) in font ec-lmr10!
+] (./dm.aux))
 
 Here is how much of LuaTeX's memory you used:
  20143 strings out of 481365
  100000,794899 words of node,token memory allocated
- 34689 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 5 glue, 1 kern, 1 penalty, 4460 glyph, 1251 attribu
-te, 67 glue_spec, 209 attribute_list, 2 write nodes
-   avail lists: 1:2,2:3681,3:328,4:13,5:334,6:25,7:1549,8:146,9:598,10:6,11:88
+ 41780 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 5 glue, 1 kern, 1 penalty, 5365 glyph, 1575 attribu
+te, 67 glue_spec, 263 attribute_list, 2 write nodes
+   avail lists: 1:2,2:3303,3:328,4:13,5:356,6:25,7:1049,8:146,9:667,10:6,11:88
  36440 multiletter control sequences out of 65536+600000
  67 fonts using 4905023 bytes
  59i,16n,75p,822b,909s stack positions out of 5000i,500n,10000p,200000b,100000s
@@ -940,10 +942,10 @@ onts/type1/public/lm/lmr5.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb><
 public/lm/lmsy5.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on dm.pdf (7 pages, 248522 bytes).
+Output written on dm.pdf (8 pages, 256266 bytes).
 
-PDF statistics: 100 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
+PDF statistics: 103 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 131072)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 
