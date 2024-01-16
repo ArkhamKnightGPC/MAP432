@@ -207,38 +207,27 @@
 		\textbf{0.} Trouver un exemple de chaîne de Markov apériodique, irréductible et récurrente positive qui ne vérifie pas (1).
 	\end{tcolorbox}
 	
-	Considérons la chaîne de deux états avec matrice de transition $P = \begin{pmatrix}
-	0,2 & 0,8 \\
-	0,5 & 0,5
-	\end{pmatrix}.$
-	
-	\begin{center}
-		\begin{tikzpicture}[->]
-		\node[ellipse,draw] (N) at (8.5,8.5) {1};
-		\node[ellipse,draw] (Y) at (11.2,8.5) {2};     
-		\path (N) edge [loop above] node {0,2} (N);
-		\path (Y) edge [loop above] node {0,5} (Y);
-		\path (N) edge [bend right] node[below] {0,8} (Y);
-		\path (Y) edge [bend right] node[above] {0,5} (N);
-		\end{tikzpicture}
-	\end{center}
-
-	On remarque que la chaîne est irréductible par connexité du graphe de transtions. 
-	
-	Par le \textbf{Théorème 4.6} du cours, on sait que cette chaîne est recurrente positive $\iff$ elle admet l'unique mesure invariante. On calcule
+	Considérons une chaîne $(X_n)_{n \geq 0}$ avec espace d'états $E = \mathbb{Z}$ et matrice de transition
 	\begin{align}
-	\begin{cases}
-		&0,2 \pi(1) + 0,5 \pi(2) = \pi(1)\\
-		&0,8 \pi(1) + 0,5\pi(2) = \pi(2)\\
-		&\pi(1) + \pi(2) = 1
-	\end{cases}
-	\iff \begin{cases}
-	\pi(1) &= \frac{5}{13}\\
-	\pi(2) &= \frac{8}{13}
-	\end{cases}
+		\forall x,y \in \mathbb{Z}, \quad P(x, y) =\begin{cases}
+			\frac{1}{2} \quad \text{si $y = x+1$ ou si $y = x-1$}\\
+			0 \quad \text{sinon.}
+		\end{cases}
 	\end{align}
+	
+	On remaque que
+	\begin{itemize}
+		\item la chaîne est irréductible car le graphe de transitions est connexe;
+		\item la chaîne est apériodique car $\forall x,y \in \mathbb{Z}, \quad \forall n \geq |x-y|, \quad P^{n}(x,y)> 0$;
+		\item et la chaîne est récurrente positive car $\forall x \in \mathbb{Z}, \quad \mathbb{E}_x(T_x^+)  < +\infty$.
+	\end{itemize} 
 
-	donc, la chaîne est récurrente positive. Et la chaîne est apériodique car $$\forall x,y \in E, \quad \forall n \in \mathbb{N}, \quad P^n(x, y)>0.$$
+	Alors, on vérifie que cette chaîne ne satisfait pas la \textbf{condition de Doeblin}.
+	
+	Soient $m : E \to \mathbb{R}_+$ une loi de probabilité sur E, $\alpha > 0$ et $n_0 \in \mathbb{N}^*$. Prenons un état $y \in \mathbb{Z}$ tel que $\alpha m(y) > 0$.
+	
+	Soit $x = y + n_0 + 1$. On remarque que $ P^{n_0}(x, y) = 0 < \alpha m(y).$
+	
 	
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		\textbf{1.} Vérifier que P est la matrice de transition de la chaîne de Markov $(X_n)_{n \in \mathbb{N}}$.
